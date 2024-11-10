@@ -4,8 +4,16 @@ import numpy as np
 import pickle
 
 # Load the model and encoders (ensure the model file path is correct)
-with open('model_penguin_xxx (1).pkl', 'rb') as file:
-    model, species_encoder, island_encoder, sex_encoder = pickle.load(file)
+model_file = 'model_penguin_xxx (1).pkl'
+try:
+    with open(model_file, 'rb') as file:
+        model, species_encoder, island_encoder, sex_encoder = pickle.load(file)
+except FileNotFoundError:
+    st.error(f"Model file '{model_file}' not found. Please ensure it is uploaded to the app directory.")
+    st.stop()
+except Exception as e:
+    st.error(f"Error loading the model: {str(e)}")
+    st.stop()
 
 # Streamlit app
 st.title("Penguin Species Prediction")
@@ -29,12 +37,19 @@ x_new = pd.DataFrame({
     'year': [2023]  # You can adjust the year or remove if not required
 })
 
-# Transform categorical features
-x_new['island'] = island_encoder.transform(x_new['island'])
-x_new['sex'] = sex_encoder.transform(x_new['sex'])
+# Check if the island and sex categories exist in the encoder
+try:
+    x_new['island'] = island_encoder.transform(x_new['island'])
+    x_new['sex'] = sex_encoder.transform(x_new['sex'])
+except ValueError as e:
+    st.error(f"Error with encoding input values: {str(e)}")
+    st.stop()
 
 # Prediction and display results
 if st.button("Predict"):
-    y_pred_new = model.predict(x_new)
-    result = species_encoder.inverse_transform(y_pred_new)
-    st.write(f"Predicted Species: {result[0]}")
+    try:
+        y_pred_new = model.predict(x_new)
+        result = species_encoder.inverse_transform(y_pred_new)
+        st.write(f"Predicted Species: {result[0]}")
+    except Exception as e:
+        st.error(f"Error during prediction: {str(e)}")
