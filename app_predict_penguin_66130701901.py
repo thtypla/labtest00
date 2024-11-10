@@ -17,8 +17,8 @@ island = st.selectbox("Island", options=list(island_encoder.classes_))
 bill_length_mm = st.number_input("Bill Length (mm)", value=37.0)
 bill_depth_mm = st.number_input("Bill Depth (mm)", value=19.3)
 flipper_length_mm = st.number_input("Flipper Length (mm)", value=192.3)
-body_mass_g = st.number_input("Body Mass (g)", value=3750)
-sex = st.selectbox("Sex", options=list(sex_encoder.classes_))
+body_mass_g = st.number_input("Body Mass (g)", value=3750.0)
+sex = st.selectbox("Sex", ['MALE','FEMALE']))
 
 
 # Create input DataFrame
