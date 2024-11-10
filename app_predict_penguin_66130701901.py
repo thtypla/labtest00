@@ -5,6 +5,9 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
 
+with open('model_penguin_xxx.pkl', 'rb') as file:
+    # Load the data from the file
+    model, species_encoder, island_encoder ,sex_encoder = pickle.load(file)
 # Initialize your encoders (assuming you have already fitted these somewhere in your existing code)
 island_encoder = LabelEncoder()
 sex_encoder = LabelEncoder()
