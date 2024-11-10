@@ -1,5 +1,4 @@
 
-pip install streamlit
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -64,4 +63,4 @@ if st.button("Predict"):
     # For demonstration, we'll use a placeholder
     prediction = "Your Prediction Here"
     st.write(f"Prediction: {prediction}")
-    streamlit run app.py
+    
