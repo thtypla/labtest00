@@ -18,7 +18,7 @@ bill_length_mm = st.number_input("Bill Length (mm)", value=37.0)
 bill_depth_mm = st.number_input("Bill Depth (mm)", value=19.3)
 flipper_length_mm = st.number_input("Flipper Length (mm)", value=192.3)
 body_mass_g = st.number_input("Body Mass (g)", value=3750.0)
-sex = st.selectbox("Sex", ['MALE','FEMALE']))
+x_new['sex'] = sex_encoder.transform(x_new['sex'])
 
 
 # Create input DataFrame
