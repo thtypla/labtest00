@@ -6,7 +6,7 @@ import numpy as np
 import pickle
 
 # Load the model and encoders
-with open('model_penguin_xxx.pkl', 'rb') as file:
+with open('model_penguin_66130701901.pkl', 'rb') as file:
     model, species_encoder, island_encoder, sex_encoder = pickle.load(file)
 
 # Streamlit app
